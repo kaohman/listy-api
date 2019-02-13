@@ -1,5 +1,7 @@
 import express from "express"
 const app = express()
+import cors from "cors"
+app.use(cors())
 app.use(express.json())
 app.set("port", 3001)
 
@@ -9,18 +11,22 @@ app.locals.notes = [
     title: "Trapper Keeper",
     issues: [
       {
+        id: 21,
         body: "Finish project",
         completed: false
       },
       {
+        id: 22,
         body: "Start project",
         completed: false
       },
       {
+        id: 23,
         body: "Test project",
         completed: false
       },
       {
+        id: 24,
         body: "Deploy to Heroku",
         completed: false
       }
@@ -29,7 +35,7 @@ app.locals.notes = [
   {
     id: 2,
     title: "Hello",
-    issues: [{body: "beep", completed: true}],
+    issues: [{id: 25, body: "beep", completed: true}],
   }
 ]
 
