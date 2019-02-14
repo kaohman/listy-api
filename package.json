@@ -24,6 +24,13 @@
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/node": "^7.2.2",
-    "@babel/preset-env": "^7.3.1"
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.3.1",
+    "babel-jest": "^24.1.0",
+    "supertest": "^3.4.2"
+  },
+  "scripts": {
+    "start": "nodemon --exec babel-node server.js",
+    "test": "jest --watch"
   }
 }
