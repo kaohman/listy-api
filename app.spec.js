@@ -1,6 +1,7 @@
 import request from 'supertest';
 import '@babel/polyfill';
 import app from './app';
+import shortid from 'shortid'; 
 
 describe('api', () => {
     let notes;
@@ -76,7 +77,7 @@ describe('api', () => {
     describe('post /api/v1/notes', () => {
         it('should return a 201 and a new note if everything is ok', async () => {
             const newNote = { title: 'Title1', issues: []}
-            Date.now = jest.fn().mockImplementation(() => 10);
+            shortid.generate = jest.fn().mockImplementation(() => 10);
             const response = await request(app).post('/api/v1/notes')
                 .send(newNote);
             expect(response.status).toBe(201);
@@ -85,7 +86,7 @@ describe('api', () => {
 
         it('should return a 422 and an error message if the title or body is wrong/blank', async () => {
             const newNote = { title: '', issues: []}
-            Date.now = jest.fn().mockImplementation(() => 10);
+            shortid.generate = jest.fn().mockImplementation(() => 10);
             const response = await request(app).post('/api/v1/notes')
                 .send(newNote);
             expect(response.status).toBe(422);
@@ -99,7 +100,7 @@ describe('api', () => {
             const response = await request(app).put('/api/v1/notes/1')
                 .send({ title: 'New Title', issues: []});
             expect(response.status).toBe(204);
-            expect(app.locals.notes[0]).toEqual({ id: notes[0].id, title: 'New Title', issues: []});
+            expect(app.locals.notes[0]).toEqual({ id: 1, title: 'New Title', issues: []});
         });
 
         it('should return a status code of 422 and an error message if the request body is not ok', async () => {

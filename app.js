@@ -3,6 +3,7 @@ const app = express()
 import cors from "cors"
 app.use(cors())
 app.use(express.json())
+import shortid from 'shortid'
 
 app.locals.notes = [
     {
@@ -46,7 +47,7 @@ app.post('/api/v1/notes', (req, res) => {
     const { title, issues } = req.body
     if (!title || !issues) return res.status(422).json('Please provide a title and issues for your note')
     const newNote = {
-    id: Date.now(),
+    id: shortid.generate(),
     ...req.body
     }
     app.locals.notes.push(newNote)
