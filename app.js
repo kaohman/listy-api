@@ -7,7 +7,7 @@ import shortid from 'shortid'
 
 app.locals.notes = [
     {
-        id: 1,
+        id: '1',
         title: "Trapper Keeper",
         issues: [
         {
@@ -33,7 +33,7 @@ app.locals.notes = [
         ]
     },
     {
-        id: 2,
+        id: '2',
         title: "Hello",
         issues: [{id: 25, body: "beep", completed: true}],
     }
@@ -68,7 +68,7 @@ app.put('/api/v1/notes/:id', (req, res) => {
     if (index === -1) return res.status(404).json('Note not found')
     const newNote = { id: notes[index].id, title, issues }
     notes.splice(index, 1, newNote)
-    return res.status(204).json(newNote)
+    return res.sendStatus(204)
 })
 
 app.delete('/api/v1/notes/:id', (req, res) => {
@@ -76,7 +76,7 @@ app.delete('/api/v1/notes/:id', (req, res) => {
     const index = notes.findIndex(note => note.id == req.params.id)
     if (index === -1) return res.status(404).json('Note not found')
     notes.splice(index, 1)
-    return res.status(204).json('Note successfully deleted')
+    return res.sendStatus(204)
 })
 
 export default app;
