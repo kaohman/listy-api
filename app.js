@@ -35,9 +35,9 @@ app.locals.notes = [
     },
     {
         id: '2',
-        title: "Hello",
+        title: "This is a great note",
         color: 'blue',
-        issues: [{id: 25, body: "beep", completed: true}],
+        issues: [{id: 25, body: "beep boop", completed: true}],
     }
 ]
 
