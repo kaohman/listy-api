@@ -1,7 +1,7 @@
 # listy-api (backend)
 
 ### Set-Up Backend:
-- Clone https://github.com/hillstew/listy-api
+- Clone https://github.com/hillstew/listy-api.git
 - Run `npm install` from the root directory
 - Run `nmp start` and visit localhost:3001/api/v1/notes in your browser
 
