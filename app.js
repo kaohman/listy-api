@@ -9,6 +9,7 @@ app.locals.notes = [
     {
         id: '1',
         title: "Trapper Keeper",
+        color: 'purple',
         issues: [
         {
             id: 21,
@@ -35,6 +36,7 @@ app.locals.notes = [
     {
         id: '2',
         title: "Hello",
+        color: 'blue',
         issues: [{id: 25, body: "beep", completed: true}],
     }
 ]
@@ -44,8 +46,8 @@ app.get('/api/v1/notes', (req, res) => {
 })
     
 app.post('/api/v1/notes', (req, res) => {
-    const { title, issues } = req.body
-    if (!title || !issues) return res.status(422).json('Please provide a title and issues for your note')
+    const { title, color, issues } = req.body
+    if (!title || !color || !issues) return res.status(422).json('Please provide a title and issues for your note')
     const newNote = {
     id: shortid.generate(),
     ...req.body
@@ -61,12 +63,12 @@ app.get('/api/v1/notes/:id', (req, res) => {
 })
     
 app.put('/api/v1/notes/:id', (req, res) => {
-    const { title, issues } = req.body
+    const { title, color, issues } = req.body
     const { notes } = app.locals
-    if (!title || !issues) return res.status(422).json('Please provide a title and issues for your note')
+    if (!title || !color || !issues) return res.status(422).json('Please provide a title and issues for your note')
     const index = notes.findIndex(note => note.id == req.params.id)
     if (index === -1) return res.status(404).json('Note not found')
-    const newNote = { id: notes[index].id, title, issues }
+    const newNote = { id: notes[index].id, title, color, issues }
     notes.splice(index, 1, newNote)
     return res.sendStatus(204)
 })
